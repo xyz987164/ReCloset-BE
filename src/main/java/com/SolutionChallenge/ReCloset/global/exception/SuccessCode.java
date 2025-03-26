@@ -39,7 +39,13 @@ public enum SuccessCode {
     // Server
     ANALYSIS_SUCCESS(HttpStatus.OK, "이미지 분석 성공"),
 
-    IMAGE_UPLOAD_SUCCESS(HttpStatus.OK, "이미지 업로드 성공");
+    IMAGE_UPLOAD_SUCCESS(HttpStatus.OK, "이미지 업로드 성공"),
+
+    REWARD_CREATED(HttpStatus.CREATED, "리워드 요청에 성공하였습니다."),
+    REWARD_LIST_RETRIEVED(HttpStatus.OK, "리워드 리스트 조회 성공"),
+    REWARD_DETAIL_RETRIEVED(HttpStatus.OK, "리워드 디테일 조회 성공"),
+    REWARD_STATUS_UPDATED(HttpStatus.OK, "리워드 수정 성공");
+
 
     private final HttpStatus httpStatus;
     private final String message;

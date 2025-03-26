@@ -25,8 +25,9 @@ public class Reward {
     @Column(nullable = false)
     private String donationPhoto;
 
+    @Enumerated(EnumType.STRING) // Enum을 String 형태로 DB에 저장
     @Column(nullable = false)
-    private String status;
+    private Status status;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -41,11 +42,11 @@ public class Reward {
     private Integer rewardGranted;
 
     @Builder
-    public Reward(String email, String donationSite, String donationPhoto, String status, LocalDateTime createdAt) {
+    public Reward(String email, String donationSite, String donationPhoto, Status status, LocalDateTime createdAt) {
         this.email = email;
         this.donationSite = donationSite;
         this.donationPhoto = donationPhoto;
-        this.status = status != null ? status : "PENDING"; // status 기본값을 PENDING으로 설정
+        this.status = status != null ? status : Status.PENDING; // 기본값을 PENDING으로 설정
         this.createdAt = createdAt;
     }
 }

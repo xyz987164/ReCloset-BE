@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface RewardRepository extends JpaRepository<Reward, Long> {
     // 예시: 이메일을 기준으로 기부 정보를 찾기
     List<Reward> findByEmail(String email);
+    Optional<Reward> findByEmailAndId(String email, Long id);  // 이메일과 ID로 리워드 조회
 }

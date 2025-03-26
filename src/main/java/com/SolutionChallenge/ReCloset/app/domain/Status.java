@@ -1,5 +1,6 @@
 package com.SolutionChallenge.ReCloset.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +18,7 @@ public enum Status {
         return value;
     }
 
+    @JsonCreator
     public static Status fromValue(String value) {
         for (Status status : Status.values()) {
             if (status.getValue().equals(value)) {
