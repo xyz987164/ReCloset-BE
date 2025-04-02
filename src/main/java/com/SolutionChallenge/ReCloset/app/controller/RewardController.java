@@ -13,6 +13,7 @@ import com.SolutionChallenge.ReCloset.global.exception.ErrorCode;
 import com.SolutionChallenge.ReCloset.global.exception.SuccessCode;
 import com.SolutionChallenge.ReCloset.global.exception.model.CustomException;
 import com.SolutionChallenge.ReCloset.global.security.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,7 @@ public class RewardController {
     private TokenService tokenService;
 
     @PostMapping("/request")
+    @Operation(summary = "리워드 요청 (Access 토큰 필요) / USER, ADMIN")
     public ResponseEntity<ApiResponseTemplete<Reward>> createReward(@RequestBody(required = false) RewardRequestDto rewardRequestDto,
                                                                     @RequestHeader("Authorization") String authorizationHeader) {
         if (rewardRequestDto == null) {
@@ -61,6 +63,7 @@ public class RewardController {
     }
 
     @GetMapping("/list")
+    @Operation(summary = "리워드 목록 조회 (Access 토큰 필요) / USER-본인것만, ADMIN-전부다")
     public ResponseEntity<ApiResponseTemplete<List<RewardSummaryDto>>> getRewards(@RequestHeader("Authorization") String authorizationHeader) {
         String token = authorizationHeader.substring(7);
         Optional<RoleType> roleOptional = tokenService.extractRole(token);
@@ -87,6 +90,7 @@ public class RewardController {
     }
 
     @GetMapping("/list/{id}")
+    @Operation(summary = "리워드 세부사항 조회 (Access 토큰 필요) / USER, ADMIN")
     public ResponseEntity<ApiResponseTemplete<RewardDetailDto>> getRewardById(@PathVariable Long id,
                                                                               @RequestHeader("Authorization") String authorizationHeader) {
         String token = authorizationHeader.substring(7);
@@ -121,6 +125,7 @@ public class RewardController {
     }
 
     @PutMapping("/update/{id}")
+    @Operation(summary = "리워드 상태 수정 (Access 토큰 필요) / ADMIN ONLY")
     public ResponseEntity<ApiResponseTemplete<RewardDetailDto>> updateRewardStatus(
             @PathVariable Long id,
             @RequestBody RewardUpdateDto rewardUpdateDto,

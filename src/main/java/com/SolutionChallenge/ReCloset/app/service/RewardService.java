@@ -67,4 +67,8 @@ public class RewardService {
     public Optional<Reward> getUserRewardById(String email, Long id) {
         return rewardRepository.findByEmailAndId(email, id);  // returns Optional<Reward>
     }
+
+    public Integer getTotalRewardGranted(String email) {
+        return rewardRepository.getTotalRewardGrantedByEmail(email);
+    }
 }

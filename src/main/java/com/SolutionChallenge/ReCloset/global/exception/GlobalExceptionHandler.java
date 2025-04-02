@@ -3,6 +3,7 @@ package com.SolutionChallenge.ReCloset.global.exception;
 import com.SolutionChallenge.ReCloset.global.dto.ApiResponseTemplete;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -40,5 +41,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponseTemplete<String>> handleGeneralException(Exception e) {
         // 기타 예외 처리
         return ApiResponseTemplete.error(ErrorCode.INTERNAL_SERVER_ERROR, "Unexpected error occurred: " + e.getMessage());
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ApiResponseTemplete<String>> handleMissingParamException(MissingServletRequestParameterException e) {
+        return ApiResponseTemplete.error(ErrorCode.LOGIN_USER_FAILED,  e.getMessage() );
+
     }
 }

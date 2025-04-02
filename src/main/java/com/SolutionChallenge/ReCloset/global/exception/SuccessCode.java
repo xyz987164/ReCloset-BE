@@ -44,7 +44,9 @@ public enum SuccessCode {
     REWARD_CREATED(HttpStatus.CREATED, "리워드 요청에 성공하였습니다."),
     REWARD_LIST_RETRIEVED(HttpStatus.OK, "리워드 리스트 조회 성공"),
     REWARD_DETAIL_RETRIEVED(HttpStatus.OK, "리워드 디테일 조회 성공"),
-    REWARD_STATUS_UPDATED(HttpStatus.OK, "리워드 수정 성공");
+    REWARD_STATUS_UPDATED(HttpStatus.OK, "리워드 수정 성공"),
+
+    HOME_DATA_RETRIEVED(HttpStatus.OK, "홈화면으로 정보 받아오기 성공");
 
 
     private final HttpStatus httpStatus;
