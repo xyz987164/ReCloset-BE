@@ -15,7 +15,7 @@ public class RewardDetailDto {
     private String email;
     private String donationSite;
     private Status status; // Enum 타입으로 변경
-    private Boolean rewardGranted;
+    private Integer rewardGranted;
     private String imageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime acceptedAt;
@@ -27,7 +27,7 @@ public class RewardDetailDto {
                 .email(reward.getEmail())
                 .donationSite(reward.getDonationSite())
                 .status(reward.getStatus()) // Enum 그대로 사용
-                .rewardGranted(reward.getRewardGranted() != null && reward.getRewardGranted() == 1) // Integer -> Boolean 변환
+                .rewardGranted(reward.getRewardGranted())
                 .imageUrl(reward.getDonationPhoto()) // donationPhoto를 imageUrl로 사용
                 .createdAt(reward.getCreatedAt())
                 .acceptedAt(reward.getAcceptedAt())

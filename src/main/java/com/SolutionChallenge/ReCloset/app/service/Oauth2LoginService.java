@@ -24,29 +24,27 @@ public class Oauth2LoginService {
     private final Environment env;
     private final RestTemplate restTemplate = new RestTemplate();
     private final UserRepository userRepository;
-    private final TokenService tokenService;  // JWT 토큰 생성기 추가
 
+    /*
+    public Oauth2LoginService(Environment env) {
+        this.env = env;
+    }*/
     public User socialLogin(String code, String registrationId) {
-        // 토큰 응답 받기
         JsonNode tokenResponse = getTokenResponse(code, registrationId);
+        System.out.println(tokenResponse);// 전체 응답 가져옴
         String accessToken = tokenResponse.get("access_token").asText();
         String refreshToken = tokenResponse.has("refresh_token") ? tokenResponse.get("refresh_token").asText() : null;
+        // String refreshToken = getTokenResponse().has("refresh_token") ? getTokenResponse().get("refresh_token").asText() : null;
+        // System.out.println("userResourceNode = " + userResourceNode);
 
-        // 사용자 정보 가져오기
         JsonNode userResourceNode = getUserResource(accessToken, registrationId);
         String id = userResourceNode.get("id").asText();
         String email = userResourceNode.get("email").asText();
         String rawNickname = userResourceNode.get("name").asText();
         String nickname = new String(rawNickname.getBytes(), StandardCharsets.UTF_8);
 
-        // 사용자 정보 저장 또는 업데이트
-        User user = saveOrUpdateUser(id, email, nickname, registrationId, refreshToken);
+        return saveOrUpdateUser(id, email, nickname, registrationId, refreshToken);
 
-        // JWT 토큰 생성
-        String jwtToken = tokenService.createAccessToken(user.getEmail());  // JWT 토큰 생성
-
-
-        return user;
     }
 
     private JsonNode getTokenResponse(String authorizationCode, String registrationId) {
@@ -64,23 +62,27 @@ public class Oauth2LoginService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+/*
+        HttpEntity entity = new HttpEntity(params, headers);
 
+        ResponseEntity<JsonNode> responseNode = restTemplate.exchange(tokenUri, HttpMethod.POST, entity, JsonNode.class);
+        JsonNode accessTokenNode = responseNode.getBody();
+        return accessTokenNode.get("access_token").asText();*/
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, headers);
 
         // Google OAuth2 서버로 요청을 보내서 응답 받기
         ResponseEntity<JsonNode> responseNode = restTemplate.exchange(tokenUri, HttpMethod.POST, entity, JsonNode.class);
 
-        // 전체 응답 반환
+        // 전체 응답을 반환
         return responseNode.getBody();
     }
 
     private JsonNode getUserResource(String accessToken, String registrationId) {
-        String resourceUri = env.getProperty("oauth2." + registrationId + ".resource-uri");
+        String resourceUri = env.getProperty("oauth2."+registrationId+".resource-uri");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-
+        HttpEntity entity = new HttpEntity(headers);
         return restTemplate.exchange(resourceUri, HttpMethod.GET, entity, JsonNode.class).getBody();
     }
 

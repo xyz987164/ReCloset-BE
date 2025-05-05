@@ -27,16 +27,4 @@ public class LoginService implements UserDetailsService {
         return new CustomUserDetails(user);
     }
 
-    /**
-     * 이메일 인증 여부 확인
-     */
-    public boolean isEmailVerified(String email) {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new CustomException(
-                        ErrorCode.NOT_FOUND_USER_EXCEPTION,
-                        ErrorCode.NOT_FOUND_USER_EXCEPTION.getMessage()
-                ));
-
-        return user.getEmailVerified();
-    }
 }

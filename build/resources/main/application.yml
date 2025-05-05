@@ -34,7 +34,6 @@ spring:
           writetimeout: 5000
     auth-code-expiration-millis: ${MAIL_EXPTIME}
 
-
 oauth2:
   google:
     client-id: ${CLIENT_ID}
@@ -47,3 +46,11 @@ oauth2:
 imgbb:
   api:
     key: aa58497f2dc42b019a6d46a8857ed468
+
+image:
+  server:
+    url: ${IMAGE_SERVER_URL}
+
+llm:
+  server:
+    url: ${LLM_SERVER_URL}

@@ -1,6 +1,7 @@
 package com.SolutionChallenge.ReCloset.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -11,6 +12,7 @@ public enum Status {
     ACCEPTED("Accepted"),
     REJECTED("Rejected");
 
+    @JsonValue
     private final String value;
 
 
