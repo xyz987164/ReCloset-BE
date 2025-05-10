@@ -29,9 +29,9 @@ public class Oauth2LoginController {
         this.oauth2LoginService = oauth2LoginService;
         this.tokenService = tokenService; // TokenService 의존성 주입
     }
-
-    //local
 /*
+    //local
+
     @GetMapping("/code/{registrationId}")
     public ResponseEntity<ApiResponseTemplete<Map<String, String>>> googleLogin(@RequestParam(required = false) String code,
                                                                                 @PathVariable String registrationId) {
@@ -84,5 +84,4 @@ public class Oauth2LoginController {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Login failed: " + e.getMessage());
         }
     }
-
 }

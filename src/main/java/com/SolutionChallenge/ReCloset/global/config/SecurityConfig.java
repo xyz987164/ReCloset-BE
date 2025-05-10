@@ -78,13 +78,14 @@ public class SecurityConfig implements WebMvcConfigurer {
                         // Token 인증이 필요없는 API들을 추가하는 부분
                         .requestMatchers("/api/login/google","/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**","/login/**")
                         .permitAll() // 특정 요청 허용
-                        .requestMatchers("/api/rewards/update/**").hasAuthority("ADMIN") // API 권한 제한
-                        .requestMatchers("/api/rewards/list/**").hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/api/rewards/update/**").hasRole("ADMIN") // API 권한 제한
+                        //.requestMatchers("/api/rewards/list/**").hasRole("USER", "ADMIN")
                         .anyRequest().authenticated() // 나머지 요청은 인증 필요
                 )
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint((request, response, authException) -> {
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.setContentType("application/json");
                             response.getWriter().write("{\"error\":\"Unauthorized: " + authException.getMessage() + "\"}");
                         })
                         .accessDeniedHandler((request, response, accessDeniedException) -> {

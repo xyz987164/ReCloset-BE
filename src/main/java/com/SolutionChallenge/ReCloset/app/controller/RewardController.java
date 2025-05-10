@@ -110,8 +110,6 @@ public class RewardController {
     }
 
 
-
-
     @GetMapping("/list")
     @Operation(summary = "리워드 목록 조회 (Access 토큰 필요) / USER-본인것만, ADMIN-전부다")
     public ResponseEntity<ApiResponseTemplete<List<RewardSummaryDto>>> getRewards(@RequestHeader("Authorization") String authorizationHeader) {
