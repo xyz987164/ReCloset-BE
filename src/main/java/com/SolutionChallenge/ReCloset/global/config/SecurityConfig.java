@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +28,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.ForwardedHeaderFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -74,7 +76,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .httpBasic(AbstractHttpConfigurer::disable) // 기본 인증 비활성화
                 .authorizeHttpRequests(auth -> auth
                         // Token 인증이 필요없는 API들을 추가하는 부분
-                        .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**","/login/**")
+                        .requestMatchers("/api/login/google","/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**","/login/**")
                         .permitAll() // 특정 요청 허용
                         .requestMatchers("/api/rewards/update/**").hasAuthority("ADMIN") // API 권한 제한
                         .requestMatchers("/api/rewards/list/**").hasAnyAuthority("USER", "ADMIN")
@@ -150,6 +152,13 @@ public class SecurityConfig implements WebMvcConfigurer {
         } catch (IOException e) {
             log.error("에러 응답 처리 중 IOException 발생: {}", e.getMessage(), e);
         }
+    }
+
+    @Bean
+    public FilterRegistrationBean<ForwardedHeaderFilter> forwardedHeaderFilter() {
+        FilterRegistrationBean<ForwardedHeaderFilter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new ForwardedHeaderFilter());
+        return filterRegistrationBean;
     }
 
 

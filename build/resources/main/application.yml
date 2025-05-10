@@ -1,11 +1,11 @@
 spring:
-  port: 8080
+  port: ${PORT:8080}
   profiles:
     include: jwt
   datasource:
-    url: ${DB_JDBC_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://34.64.206.96:3306/recloset
+    username: root
+    password: 1225
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -17,28 +17,12 @@ spring:
         format_sql: true
         use_sql_comments: true
     open-in-view: false
-  mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT}
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
-          connectiontimeout: 5000
-          timeout: 5000
-          writetimeout: 5000
-    auth-code-expiration-millis: ${MAIL_EXPTIME}
 
 oauth2:
   google:
-    client-id: ${CLIENT_ID}
-    client-secret: ${CLIENT_SECRET}
-    redirect-uri: http://localhost:8080/login/oauth2/code/google
+    client-id: 234853176428-ipoans95ognnmmjngua22auravqo0pf7.apps.googleusercontent.com
+    client-secret: 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
+    redirect-uri: https://recloset-114997745103.asia-northeast3.run.app/login/oauth2/code/google
     token-uri: https://oauth2.googleapis.com/token
     resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
     auth-uri: https://accounts.google.com/o/oauth2/auth?access_type=offline
@@ -49,8 +33,11 @@ imgbb:
 
 image:
   server:
-    url: ${IMAGE_SERVER_URL}
+    url: https://recloset-ai-api-jeot7amkzq-du.a.run.app/predict
 
 llm:
   server:
-    url: ${LLM_SERVER_URL}
+    url: http://recloset-llm.duckdns.org/process_damage
+
+server:
+  forward-headers-strategy: native

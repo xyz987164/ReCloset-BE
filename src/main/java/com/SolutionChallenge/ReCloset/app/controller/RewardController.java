@@ -13,14 +13,21 @@ import com.SolutionChallenge.ReCloset.global.exception.ErrorCode;
 import com.SolutionChallenge.ReCloset.global.exception.SuccessCode;
 import com.SolutionChallenge.ReCloset.global.exception.model.CustomException;
 import com.SolutionChallenge.ReCloset.global.security.TokenService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,29 +45,72 @@ public class RewardController {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping("/request")
+    @Value("${imgbb.api.key}")
+    private String apiKey;
+
+    private final RestTemplate restTemplate = new RestTemplate();
+
+
+    @PostMapping(value = "/request", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "리워드 요청 (Access 토큰 필요) / USER, ADMIN")
-    public ResponseEntity<ApiResponseTemplete<Reward>> createReward(@RequestBody(required = false) RewardRequestDto rewardRequestDto,
-                                                                    @RequestHeader("Authorization") String authorizationHeader) {
-        if (rewardRequestDto == null) {
+    public ResponseEntity<ApiResponseTemplete<Reward>> createReward(
+            @RequestPart("donationSite") String donationSite,
+            @RequestPart("donationPhoto") MultipartFile donationPhoto,
+            @RequestHeader("Authorization") String authorizationHeader) {
+
+        // 1. 입력 유효성 검사
+        if (donationSite == null || donationSite.isBlank() || donationPhoto == null || donationPhoto.isEmpty()) {
             return ApiResponseTemplete.error(ErrorCode.INVALID_REQUEST, null);
         }
 
-        if (rewardRequestDto.getDonationSite() == null || rewardRequestDto.getDonationPhoto().isEmpty()) {
-            return ApiResponseTemplete.error(ErrorCode.INVALID_REQUEST, null);
-        }
-
+        // 2. 토큰에서 이메일 추출
         String token = authorizationHeader.substring(7);
         Optional<String> emailOptional = tokenService.extractEmail(token);
-
         if (emailOptional.isEmpty()) {
             return ApiResponseTemplete.error(ErrorCode.UNAUTHORIZED_EXCEPTION, null);
         }
-
         String email = emailOptional.get();
-        Reward reward = rewardService.createReward(email, rewardRequestDto);
-        return ApiResponseTemplete.success(SuccessCode.REWARD_CREATED, reward);
+
+        try {
+            // 3. imgbb API 호출하여 이미지 URL 가져오기
+            String imageUrl = uploadToImgbb(donationPhoto);
+
+            // 4. RewardRequestDto 생성 후 서비스 호출
+            RewardRequestDto rewardRequestDto = new RewardRequestDto();
+            rewardRequestDto.setDonationSite(donationSite);
+            rewardRequestDto.setDonationPhoto(imageUrl); // URL만 저장
+
+            Reward reward = rewardService.createReward(email, rewardRequestDto);
+            return ApiResponseTemplete.success(SuccessCode.REWARD_CREATED, reward);
+
+        } catch (Exception e) {
+            return ApiResponseTemplete.error(ErrorCode.IMAGE_UPLOAD_ERROR, null);
+        }
     }
+
+    private String uploadToImgbb(MultipartFile file) throws IOException {
+        String url = "https://api.imgbb.com/1/upload?key=" + apiKey;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("image", new ByteArrayResource(file.getBytes()) {
+            @Override
+            public String getFilename() {
+                return file.getOriginalFilename();
+            }
+        });
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+        JsonNode jsonNode = new ObjectMapper().readTree(response.getBody());
+        return jsonNode.path("data").path("url").asText(); // 이미지 URL
+    }
+
+
+
 
     @GetMapping("/list")
     @Operation(summary = "리워드 목록 조회 (Access 토큰 필요) / USER-본인것만, ADMIN-전부다")

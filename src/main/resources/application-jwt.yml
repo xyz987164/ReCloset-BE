@@ -1,11 +1,11 @@
 jwt:
   access:
-    expiration: ${ATOKEN_TIME}
+    expiration: 36000000
     header: Authorization
   refresh:
-    expiration: ${RTOKEN_TIME}
+    expiration: 36000000
     header: Refresh-Token
-  secret: ${JWT_SECRET}
+  secret: f4e6cdb3bfe18ef04ffe31d054a56099649a10d651aa5e7e719276b9a6787cc4c5020edbf80b705724ce5de1ae77dd9487f5bc5ba29de447f7b527210f595346
 
 springdoc:
   api-docs:
