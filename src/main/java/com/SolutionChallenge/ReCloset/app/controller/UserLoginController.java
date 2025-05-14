@@ -77,8 +77,8 @@ public class UserLoginController {
         String scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
         String responseType = "code";
 
-        // access_type=offline은 별도의 파라미터로 추가
-        String url = String.format("%s?client_id=%s&redirect_uri=%s&response_type=%s&scope=%s&access_type=offline",
+        // ✅ prompt=select_account 파라미터 추가
+        String url = String.format("%s?client_id=%s&redirect_uri=%s&response_type=%s&scope=%s&access_type=offline&prompt=select_account",
                 AUTH_URL, clientId, redirectUri, responseType, scope);
 
         return new RedirectView(url);

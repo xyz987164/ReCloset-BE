@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.SolutionChallenge.ReCloset.DemoApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-05-10T16:04:04" hostname="SH" time="0.404">
+<testsuite name="com.SolutionChallenge.ReCloset.DemoApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-05-13T13:52:09" hostname="SH" time="0.584">
   <properties/>
-  <testcase name="contextLoads()" classname="com.SolutionChallenge.ReCloset.DemoApplicationTests" time="0.404"/>
-  <system-out><![CDATA[01:03:58.620 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.SolutionChallenge.ReCloset.DemoApplicationTests]: DemoApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-01:03:58.736 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.SolutionChallenge.ReCloset.ReClosetApplication for test class com.SolutionChallenge.ReCloset.DemoApplicationTests
+  <testcase name="contextLoads()" classname="com.SolutionChallenge.ReCloset.DemoApplicationTests" time="0.584"/>
+  <system-out><![CDATA[22:52:02.042 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.SolutionChallenge.ReCloset.DemoApplicationTests]: DemoApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:52:02.153 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.SolutionChallenge.ReCloset.ReClosetApplication for test class com.SolutionChallenge.ReCloset.DemoApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,31 +14,31 @@
 
  :: Spring Boot ::                (v3.3.1)
 
-2025-05-11T01:03:59.229+09:00  INFO 17052 --- [demo] [    Test worker] c.S.ReCloset.DemoApplicationTests        : Starting DemoApplicationTests using Java 21.0.2 with PID 17052 (started by seohy in C:\github\ReCloset)
-2025-05-11T01:03:59.230+09:00  INFO 17052 --- [demo] [    Test worker] c.S.ReCloset.DemoApplicationTests        : The following 1 profile is active: "jwt"
-2025-05-11T01:04:00.114+09:00  INFO 17052 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2025-05-11T01:04:00.114+09:00  INFO 17052 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-11T01:04:00.146+09:00  INFO 17052 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.EmailVerificationRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2025-05-11T01:04:00.146+09:00  INFO 17052 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.RewardRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2025-05-11T01:04:00.146+09:00  INFO 17052 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2025-05-11T01:04:00.146+09:00  INFO 17052 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.WithdrawalRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2025-05-11T01:04:00.146+09:00  INFO 17052 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 0 JDBC repository interfaces.
-2025-05-11T01:04:00.161+09:00  INFO 17052 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2025-05-11T01:04:00.161+09:00  INFO 17052 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-05-11T01:04:00.195+09:00  INFO 17052 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 4 JPA repository interfaces.
-2025-05-11T01:04:00.779+09:00  INFO 17052 --- [demo] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-05-11T01:04:00.826+09:00  INFO 17052 --- [demo] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2025-05-11T01:04:00.873+09:00  INFO 17052 --- [demo] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-05-11T01:04:01.174+09:00  INFO 17052 --- [demo] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-11T01:04:01.211+09:00  INFO 17052 --- [demo] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-05-11T01:04:01.601+09:00  INFO 17052 --- [demo] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c62f69a
-2025-05-11T01:04:01.601+09:00  INFO 17052 --- [demo] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-05-11T01:04:01.663+09:00  WARN 17052 --- [demo] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-05-11T01:04:02.517+09:00  INFO 17052 --- [demo] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-11T01:04:02.615+09:00  INFO 17052 --- [demo] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-11T01:04:03.019+09:00  INFO 17052 --- [demo] [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-05-11T01:04:03.717+09:00  INFO 17052 --- [demo] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name loginService
-2025-05-11T01:04:04.634+09:00  INFO 17052 --- [demo] [    Test worker] c.S.ReCloset.DemoApplicationTests        : Started DemoApplicationTests in 5.733 seconds (process running for 6.746)
+2025-05-13T22:52:02.693+09:00  INFO 25704 --- [demo] [    Test worker] c.S.ReCloset.DemoApplicationTests        : Starting DemoApplicationTests using Java 21.0.2 with PID 25704 (started by seohy in C:\github\ReCloset)
+2025-05-13T22:52:02.693+09:00  INFO 25704 --- [demo] [    Test worker] c.S.ReCloset.DemoApplicationTests        : The following 1 profile is active: "jwt"
+2025-05-13T22:52:03.711+09:00  INFO 25704 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-13T22:52:03.711+09:00  INFO 25704 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-13T22:52:03.759+09:00  INFO 25704 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.EmailVerificationRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-05-13T22:52:03.759+09:00  INFO 25704 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.RewardRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-05-13T22:52:03.759+09:00  INFO 25704 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-05-13T22:52:03.759+09:00  INFO 25704 --- [demo] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.SolutionChallenge.ReCloset.app.repository.WithdrawalRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-05-13T22:52:03.759+09:00  INFO 25704 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 0 JDBC repository interfaces.
+2025-05-13T22:52:03.774+09:00  INFO 25704 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-13T22:52:03.774+09:00  INFO 25704 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-13T22:52:03.805+09:00  INFO 25704 --- [demo] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 4 JPA repository interfaces.
+2025-05-13T22:52:04.609+09:00  INFO 25704 --- [demo] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-13T22:52:04.723+09:00  INFO 25704 --- [demo] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-05-13T22:52:04.800+09:00  INFO 25704 --- [demo] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-13T22:52:05.345+09:00  INFO 25704 --- [demo] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-13T22:52:05.385+09:00  INFO 25704 --- [demo] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-13T22:52:05.967+09:00  INFO 25704 --- [demo] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ec3944
+2025-05-13T22:52:05.971+09:00  INFO 25704 --- [demo] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-13T22:52:06.079+09:00  WARN 25704 --- [demo] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-13T22:52:07.031+09:00  INFO 25704 --- [demo] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-13T22:52:07.129+09:00  INFO 25704 --- [demo] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-13T22:52:07.699+09:00  INFO 25704 --- [demo] [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-13T22:52:08.715+09:00  INFO 25704 --- [demo] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name loginService
+2025-05-13T22:52:09.927+09:00  INFO 25704 --- [demo] [    Test worker] c.S.ReCloset.DemoApplicationTests        : Started DemoApplicationTests in 7.567 seconds (process running for 8.938)
 ]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\seohy\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.17\e3c251a39dc90badaf71c83427ba46840f219d8d\byte-buddy-agent-1.14.17.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
