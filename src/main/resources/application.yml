@@ -3,9 +3,9 @@ spring:
   profiles:
     include: jwt
   datasource:
-    url: jdbc:mysql://34.64.206.96:3306/recloset
-    username: root
-    password: 1225
+    url: ${DB_JDBC_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -20,24 +20,24 @@ spring:
 
 oauth2:
   google:
-    client-id: 234853176428-ipoans95ognnmmjngua22auravqo0pf7.apps.googleusercontent.com
-    client-secret: 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
-    redirect-uri: https://recloset-114997745103.asia-northeast3.run.app/login/oauth2/code/google
+    client-id: ${CLIENT_ID}
+    client-secret: ${CLIENT_PW}
+    redirect-uri: ${REDIRECT_URI}
     token-uri: https://oauth2.googleapis.com/token
     resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
     auth-uri: https://accounts.google.com/o/oauth2/auth?access_type=offline
 
 imgbb:
   api:
-    key: 9a27eff50f1415efd05205baf4425c4a
+    key: ${IMAGE_API}
 
 image:
   server:
-    url: https://recloset-ai-api-jeot7amkzq-du.a.run.app/predict
+    url: ${IMAGE_SERVER_URL}
 
 llm:
   server:
-    url: http://recloset-llm.duckdns.org/process_damage
+    url: ${LLM_SERVER_URL}
 
 server:
   forward-headers-strategy: native
