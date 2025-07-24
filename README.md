@@ -13,6 +13,5 @@
 <br>
 ![포트폴리오_page-0015](https://github.com/user-attachments/assets/5053ecec-2c8a-46ba-83e7-937fadadb97f)
 <br>
-![포트폴리오_page-0016](https://github.com/user-attachments/assets/77db7bfc-d806-4a46-892c-75e98b65e816)
+[![포트폴리오_page-0016](https://github.com/user-attachments/assets/77db7bfc-d806-4a46-892c-75e98b65e816)](https://youtu.be/bYcNS9IFUzw?si=3iYxu0p0ehkRs_DP)
 <br>
-[![포트폴리오_page-0017](https://github.com/user-attachments/assets/0995b76f-84e2-4ff2-8514-e2a06b904d7d)](https://youtu.be/bYcNS9IFUzw?si=3iYxu0p0ehkRs_DP)
